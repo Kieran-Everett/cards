@@ -4,6 +4,22 @@
         "externalName": "Example Card",
         "cost": 1,
         "type": "damage",
+        "value": 1
+    },
+
+    "basicAttack": {
+        "name": "basicAttack",
+        "externalName": "Sword Strike",
+        "cost": 1,
+        "type": "damage",
         "value": 4
+    },
+
+    "basicShield": {
+        "name": "basicShield",
+        "externalName": "Block",
+        "cost": 1,
+        "type": "defence",
+        "value": 5
     }
 }
