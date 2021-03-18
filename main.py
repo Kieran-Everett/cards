@@ -10,13 +10,13 @@ with open('data/cards.json') as file:
 class card():
     # Card class for saving information about a card
 
-    def __init__(self, name, externalName, cost, type, value):
+    def __init__(self, name):
 
-        self.name = name # Internal name of card
-        self.externalName = externalName # External name of card
-        self.cost = cost # AP cost of card
-        self.type = type # The type of card
-        self.value = value # Variable for storing relevant data
+        self.name = cards[name]["name"] # Internal name of card
+        self.externalName = cards[name]["externalName"] # External name of card
+        self.cost = cards[name]["cost"] # AP cost of card
+        self.type = cards[name]["type"]# The type of card
+        self.value = cards[name]["value"] # Variable for storing relevant data
     
     def useCard(self):
         # Using the card
