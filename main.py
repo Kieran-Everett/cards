@@ -1,5 +1,10 @@
 #import random
-#import json
+import json
+
+
+# Loads cards
+with open('data/cards.json') as file:
+    cards = json.load(file)
 
 
 class card():
