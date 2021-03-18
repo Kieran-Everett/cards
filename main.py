@@ -5,9 +5,10 @@
 class card():
     # Card class for saving information about a card
 
-    def __init__(self, name, cost, type, value):
+    def __init__(self, name, externalName, cost, type, value):
 
         self.name = name # Internal name of card
+        self.externalName = externalName # External name of card
         self.cost = cost # AP cost of card
         self.type = type # The type of card
         self.value = value # Variable for storing relevant data

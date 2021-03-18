@@ -1,6 +1,7 @@
 {
     "_exampleCard": {
-        "name": "Example Card",
+        "name": "_exampleCard",
+        "externalName": "Example Card",
         "cost": 1,
         "type": "damage",
         "value": 4
