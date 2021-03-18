@@ -1,0 +1,8 @@
+{
+    "_exampleCard": {
+        "name": "Example Card",
+        "cost": 1,
+        "type": "damage",
+        "value": 4
+    }
+}
