@@ -1,0 +1,24 @@
+{
+    "_exampleEnemy": {
+        "name": "_exampleEnemy",
+        "externalName": "Example Enemy",
+        "maxHealth": 10,
+        "abilities": {
+            "damage": {
+                "type": "damage",
+                "value": 4,
+                "tags": []
+            },
+            "block": {
+                "type": "defence",
+                "value": 5,
+                "tags": []
+            },
+            "status": {
+                "type": "statusEffect",
+                "value": 1,
+                "tags": ["attackDown"]
+            }
+        }
+    }
+}
