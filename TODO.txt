@@ -1,6 +1,5 @@
 To Do:
 more functionallity of using a card ie damage or block
-taking damage
 dealing damage
 enemies sketchout
 enemies turn
@@ -13,3 +12,4 @@ ending a turn and discarding remaining cards
 using a card
 tracking cards
 adding block to the player's attributes
+taking damage
