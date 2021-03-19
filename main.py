@@ -168,6 +168,45 @@ class player():
             self.die()
 
 
+def save():
+
+    saveName = input("Enter save file name: ")
+
+    saveData = {
+        "saveFileName": saveName,
+
+        "Player": {
+            "maxHealth": p.maxHealth,
+            "maxAp": p.maxAp,
+            "drawAmount": p.drawAmount,
+
+            "deck": [],
+            "discard": [],
+            "hand": [],
+
+            "health": p.health,
+            "block": p.block,
+            "ap": p.ap
+        },
+
+        "GameState": {
+            "turn": gs.turn
+        }
+    }
+
+    for i in p.deck:
+        saveData["Player"]["deck"].append(i.name)
+    
+    for i in p.discard:
+        saveData["Player"]["discard"].append(i.name)
+    
+    for i in p.hand:
+        saveData["Player"]["hand"].append(i.name)
+
+    with open('saves/'+saveName+'.json', 'w') as file:
+        json.dump(saveData, file, indent=4)
+
+
 def main():
 
     pass
