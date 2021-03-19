@@ -20,6 +20,10 @@ class GameState():
             self.turn = "enemy"
         else:
             self.turn = "player"
+    
+    def lose(self):
+
+        print("Game Over")
 
 
 class card():
@@ -69,10 +73,10 @@ class card():
 class player():
     # Player class for saving information about the player
     
-    def __init__(self, health=10, maxAp=3, drawAmount=5):
+    def __init__(self, maxHealth=10, maxAp=3, drawAmount=5):
 
         # General stats and stuff or things that don't change much
-        self.health = health # Player's HP
+        self.maxHealth = maxHealth
         self.maxAp = maxAp # Player's Max AP
         self.drawAmount = drawAmount # The amount of cards that the player draws
 
@@ -82,6 +86,7 @@ class player():
         self.hand = [] # Player's hand
 
         # Current status related things or things that change a lot
+        self.health = self.maxHealth # Player's HP
         self.block = 0 # player's block
         self.ap = self.maxAp # Player's AP
     
@@ -145,6 +150,22 @@ class player():
         while self.hand != []:
             self.discard.append(self.hand[0])
             del self.hand[0]
+    
+    def die(self):
+        # If the player dies
+
+        gs.lose()
+    
+    def takeDamage(self, damage):
+        # Dealing damage to the player
+
+        self.block -= damage
+        if self.block < 0:
+            self.health += self.block
+            self.block = 0
+        
+        if self.health <= 0:
+            self.die()
 
 
 def main():
@@ -153,7 +174,7 @@ def main():
 
 
 if __name__ == "__main__":
-    
+
     p = player()
     gs = GameState()
 
