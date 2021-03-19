@@ -23,27 +23,41 @@ class card():
 
         pass
 
+    def getCardInfo(self):
+
+        return [self.name, self.externalName, self.cost, self.type, self.value]
+
 
 class player():
     # Player class for saving information about the player
     
-    def __init__(self, health, ap):
+    def __init__(self, health=10, ap=3):
 
         self.health = health # Player's HP
         self.ap = ap # Player's AP
 
         self.deck = [] # Player's deck
+    
+    def addCard(self, name):
+
+        self.deck.append(card(name))
+    
+    def getCardInfo(self, cardID):
+
+        return self.deck[cardID].getCardInfo()
 
 
-def useCard(deckID):
+def useCard(cardID):
 
     # run deckID.useCard()
-    # destroy deckID
+    # destroy cardID
     pass
 
 def main():
 
-    pass
+    x = player()
+    x.addCard("basicAttack")
+    print(x.getCardInfo(0))
 
 
 if __name__ == "__main__":
