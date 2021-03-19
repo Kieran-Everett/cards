@@ -63,6 +63,7 @@ class player():
         self.deck = [] # Player's deck
     
     def addCard(self, name):
+        # Adding a card to the deck
 
         self.deck.append(card(name))
     
