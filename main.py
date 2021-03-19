@@ -3,8 +3,8 @@ import json
 
 
 # Loads cards
-with open('data/cards.json') as file:
-    cards = json.load(file)
+with open('data/cards.json') as cardsFile:
+    cards = json.load(cardsFile)
 
 
 class GameState():
@@ -203,8 +203,8 @@ def save():
     for i in p.hand:
         saveData["Player"]["hand"].append(i.name)
 
-    with open('saves/'+saveName+'.json', 'w') as file:
-        json.dump(saveData, file, indent=4)
+    with open('saves/'+saveName+'.json', 'w') as saveFile:
+        json.dump(saveData, saveFile, indent=4)
 
 
 def main():
