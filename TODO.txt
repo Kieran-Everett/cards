@@ -1,6 +1,5 @@
 To Do:
 more functionallity of using a card ie damage or block
-adding block to the player's attributes
 taking damage
 dealing damage
 
@@ -10,3 +9,4 @@ shuffling the deck
 ending a turn and discarding remaining cards
 using a card
 tracking cards
+adding block to the player's attributes
