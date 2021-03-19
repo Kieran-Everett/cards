@@ -55,9 +55,7 @@ def useCard(cardID):
 
 def main():
 
-    x = player()
-    x.addCard("basicAttack")
-    print(x.getCardInfo(0))
+    pass
 
 
 if __name__ == "__main__":
