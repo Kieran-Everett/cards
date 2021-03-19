@@ -20,6 +20,14 @@ class card():
         self.tags = cards[name]["tags"]
 
     def getCardInfo(self):
+        # Helper function for getting the card's info in a neat list
+        # Maybe convert all the values to strings with this code?
+
+        #cardInfo = [self.name, self.externalName, self.cost, self.type, self.value, self.tags]
+        #count = 0
+        #for data in cardInfo:
+        #    cardInfo[count] = str(data)
+        #    count += 1
 
         return [self.name, self.externalName, self.cost, self.type, self.value, self.tags]
     
@@ -29,11 +37,13 @@ class card():
         usable = True
         reusable = False
 
+        # Check to see if the card is reusable
         for tag in self.tags:
             if tag == "reusable":
                 reusable = True
                 break
 
+        # Check to see if the player has enough AP to use the card
         if p.ap < self.cost:
             usable = False
             return usable, reusable
@@ -47,7 +57,7 @@ class player():
     def __init__(self, health=10, maxAp=3):
 
         self.health = health # Player's HP
-        self.maxAp = maxAp
+        self.maxAp = maxAp # Player's Max AP
         self.ap = self.maxAp # Player's AP
 
         self.deck = [] # Player's deck
@@ -60,15 +70,17 @@ class player():
 
         usable, reusable = self.deck[cardID].useCard()
 
-        print(usable, reusable)
-
+        # If the card is not usable then don't delete the card
         if usable == False:
             return usable
 
+        # If the card is not reusable then the card gets removed
         if not(reusable):
             del self.deck[cardID]
+            return usable
     
     def getCardInfo(self, cardID):
+        # Helper function for getting the info of a card
 
         return self.deck[cardID].getCardInfo()
 
