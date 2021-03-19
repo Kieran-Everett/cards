@@ -240,7 +240,16 @@ def load():
 
 def main():
 
-    pass
+    print("Do you want to load a save file? (y/n)")
+    while True:
+        x = input()
+        if x == "y":
+            load()
+            break
+        elif x == "n":
+            break
+        else:
+            print("Enter either y or n")
 
 
 if __name__ == "__main__":
