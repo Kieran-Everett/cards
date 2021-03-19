@@ -56,14 +56,19 @@ class player():
     
     def __init__(self, health=10, maxAp=3, drawAmount=5):
 
+        # General stats and stuff or things that don't change much
         self.health = health # Player's HP
         self.maxAp = maxAp # Player's Max AP
-        self.ap = self.maxAp # Player's AP
         self.drawAmount = drawAmount # The amount of cards that the player draws
 
+        # Card storage
         self.deck = [] # Player's deck
         self.discard = [] # Player's discard pile
         self.hand = [] # Player's hand
+
+        # Current status related things or things that change a lot
+        self.block = 0 # player's block
+        self.ap = self.maxAp # Player's AP
     
     def addCard(self, name):
         # Adding a card to the deck
