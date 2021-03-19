@@ -4,7 +4,8 @@
         "externalName": "Example Card",
         "cost": 1,
         "type": "damage",
-        "value": 1
+        "value": 1,
+        "tags": ["reusable"]
     },
 
     "basicAttack": {
@@ -12,7 +13,8 @@
         "externalName": "Sword Strike",
         "cost": 1,
         "type": "damage",
-        "value": 4
+        "value": 4,
+        "tags": []
     },
 
     "basicShield": {
@@ -20,6 +22,7 @@
         "externalName": "Block",
         "cost": 1,
         "type": "defence",
-        "value": 5
+        "value": 5,
+        "tags": []
     }
 }
