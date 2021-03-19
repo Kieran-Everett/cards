@@ -4,7 +4,7 @@
         "externalName": "Example Enemy",
         "maxHealth": 10,
         "abilities": {
-            "damage": {
+            "attack": {
                 "type": "damage",
                 "value": 4,
                 "tags": []
