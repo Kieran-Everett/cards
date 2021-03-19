@@ -2,6 +2,9 @@ To Do:
 more functionallity of using a card ie damage or block
 taking damage
 dealing damage
+enemies sketchout
+enemies turn
+enemy logic
 
 Done:
 starting a turn and pulling a hand
