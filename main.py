@@ -6,6 +6,9 @@ import json
 with open('data/cards.json') as cardsFile:
     cards = json.load(cardsFile)
 
+with open('data/enemies.json') as enemiesFile:
+    enemies = json.load(enemiesFile)
+
 
 class GameState():
     # Controls the game state
@@ -24,6 +27,62 @@ class GameState():
     def lose(self):
 
         print("Game Over")
+
+
+class Enemy():
+    # Enemy class for controlling and saving data about the enemies
+
+    def __init__(self, name):
+
+        self.name = enemies[name]["name"] # Internal name of enemy
+        self.externalName = enemies[name]["externalName"] # External name of enemy
+        
+        self.maxHealth = enemies[name]["maxHealth"] # Max health of enemy
+        self.health = self.maxHealth # Health of enemy
+        self.block = 0
+
+        self.abilities = enemies[name]["abilities"] # Dict of abilities
+    
+    def die(self):
+        # Helper function for dying
+
+        print("dead")
+    
+    def takeDamage(self, damage):
+        # Taking damage
+
+        self.block -= damage
+        if self.block < 0:
+            self.health += self.block
+            self.block = 0
+        
+        if self.health <= 0:
+            self.die()
+    
+    def dealDamage(self, damage):
+        # Helper function for dealing damage to the player
+
+        p.takeDamage(damage)
+
+    def doAction(self):
+        # Making an attack
+
+        # Basic action method, randomly selects an option with no logic
+        possibleActions = []
+        for i in self.abilities:
+            possibleActions.append(i)
+        
+        action = random.choice(possibleActions)
+        if self.abilities[action]["type"] == "damage":
+            self.dealDamage(self.abilities[action]["value"])
+            print("damage")
+        elif self.abilities[action]["type"] == "defence":
+            self.block += self.abilities[action]["value"]
+            print("block")
+        elif self.abilities[action]["type"] == "statusEffect":
+            print("not implimented yet")
+        else:
+            print("Error: Invalid abilities type")
 
 
 class card():
