@@ -1,0 +1,12 @@
+To Do:
+more functionallity of using a card ie damage or block
+adding block to the player's attributes
+taking damage
+dealing damage
+
+Done:
+starting a turn and pulling a hand
+shuffling the deck
+ending a turn and discarding remaining cards
+using a card
+tracking cards
