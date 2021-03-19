@@ -54,13 +54,16 @@ class card():
 class player():
     # Player class for saving information about the player
     
-    def __init__(self, health=10, maxAp=3):
+    def __init__(self, health=10, maxAp=3, drawAmount=5):
 
         self.health = health # Player's HP
         self.maxAp = maxAp # Player's Max AP
         self.ap = self.maxAp # Player's AP
+        self.drawAmount = drawAmount # The amount of cards that the player draws
 
         self.deck = [] # Player's deck
+        self.discard = [] # Player's discard pile
+        self.hand = [] # Player's hand
     
     def addCard(self, name):
         # Adding a card to the deck
@@ -84,6 +87,13 @@ class player():
         # Helper function for getting the info of a card
 
         return self.deck[cardID].getCardInfo()
+    
+    def endTurn(self):
+        # Empties the player's hand into the discard pile
+
+        while self.hand != []:
+            self.discard.append(self.hand[0])
+            del self.hand[0]
 
 
 def main():
