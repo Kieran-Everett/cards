@@ -90,10 +90,15 @@ class player():
         self.block = 0 # player's block
         self.ap = self.maxAp # Player's AP
     
-    def addCard(self, name):
+    def addCard(self, name, pile="deck"):
         # Adding a card to the deck
 
-        self.deck.append(card(name))
+        if pile == "deck":
+            self.deck.append(card(name))
+        elif pile == "hand":
+            self.hand.append(card(name))
+        else:
+            self.discard.append(card(name))
     
     def useCard(self, cardID):
 
@@ -205,6 +210,32 @@ def save():
 
     with open('saves/'+saveName+'.json', 'w') as saveFile:
         json.dump(saveData, saveFile, indent=4)
+
+def load():
+
+    saveName = input("Enter save file name: ")
+
+    with open('saves/'+saveName+'.json') as saveFile:
+        saveData = json.load(saveFile)
+    
+    p.maxHealth = saveData["Player"]["maxHealth"]
+    p.maxAp = saveData["Player"]["maxAp"]
+    p.drawAmount = saveData["Player"]["drawAmount"]
+
+    for i in saveData["Player"]["deck"]:
+        p.addCard(i, "deck")
+    
+    for i in saveData["Player"]["discard"]:
+        p.addCard(i, "discard")
+    
+    for i in saveData["Player"]["hand"]:
+        p.addCard(i, "hand")
+    
+    p.health = saveData["Player"]["health"]
+    p.block = saveData["Player"]["block"]
+    p.ap = saveData["Player"]["ap"]
+
+    gs.turn = saveData["GameState"]["turn"]
 
 
 def main():
