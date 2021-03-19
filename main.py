@@ -1,4 +1,4 @@
-#import random
+import random
 import json
 
 
@@ -72,7 +72,7 @@ class player():
     
     def useCard(self, cardID):
 
-        usable, reusable = self.deck[cardID].useCard()
+        usable, reusable = self.hand[cardID].useCard()
 
         # If the card is not usable then don't delete the card
         if usable == False:
@@ -80,13 +80,44 @@ class player():
 
         # If the card is not reusable then the card gets removed
         if not(reusable):
-            del self.deck[cardID]
+            del self.hand[cardID]
             return usable
     
     def getCardInfo(self, cardID):
         # Helper function for getting the info of a card
 
-        return self.deck[cardID].getCardInfo()
+        return self.hand[cardID].getCardInfo()
+    
+    def shuffleDeck(self):
+        # Moves the cards from the discard pile and shuffles the deck
+
+        oldDeck = self.deck
+        self.deck = self.discard
+        self.discard = []
+        for __ in oldDeck:
+            self.deck.append(oldDeck[0])
+            del oldDeck[0]
+        random.shuffle(self.deck)
+    
+    def startTurn(self):
+        # Pulls cards into the player's hand from the deck
+
+        self.ap = self.maxAp
+
+        toDraw = self.drawAmount
+        if toDraw > len(self.deck):
+            for __ in range(len(self.deck)): # for every remaining card
+                self.hand.append(self.deck[0]) # add it to the hand
+                del self.deck[0] # delete it from the deck
+                toDraw -= 1
+            self.shuffleDeck()
+            for __ in range(toDraw):
+                self.hand.append(self.deck[0])
+                del self.deck[0]
+        else:
+            for __ in range(toDraw):
+                self.hand.append(self.deck[0])
+                del self.deck[0]
     
     def endTurn(self):
         # Empties the player's hand into the discard pile
