@@ -1,6 +1,6 @@
 To Do:
 more functionallity of using a card ie damage or block
-dealing damage
+let the player deal damage to the enemies
 enemies turn
 enemy logic
 
