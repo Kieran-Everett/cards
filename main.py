@@ -7,6 +7,21 @@ with open('data/cards.json') as file:
     cards = json.load(file)
 
 
+class GameState():
+    # Controls the game state
+    
+    def __init__(self):
+
+        self.turn = "player" # player/enemy
+    
+    def nextTurn(self):
+
+        if self.turn == "player":
+            self.turn = "enemy"
+        else:
+            self.turn = "player"
+
+
 class card():
     # Card class for saving information about a card
 
