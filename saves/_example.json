@@ -1,6 +1,21 @@
 {
-    "name": "Joe",
-    "hp": 10,
-    "ap": 3,
-    "deck": ["a", "b", "c"]
+    "saveFileName": "_example",
+    
+    "Player": {
+        "maxHealth": 10,
+        "maxAp": 3,
+        "drawAmount": 5,
+
+        "deck": ["basicAttack", "basicAttack", "basicAttack"],
+        "discard": ["basicAttack", "basicAttack"],
+        "hand": ["basicAttack", "basicAttack"],
+
+        "health": 10,
+        "block": 0,
+        "ap": 3
+    },
+
+    "GameState": {
+        "turn": "player"
+    }
 }
