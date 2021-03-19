@@ -17,24 +17,38 @@ class card():
         self.cost = cards[name]["cost"] # AP cost of card
         self.type = cards[name]["type"]# The type of card
         self.value = cards[name]["value"] # Variable for storing relevant data
+        self.tags = cards[name]["tags"]
+
+    def getCardInfo(self):
+
+        return [self.name, self.externalName, self.cost, self.type, self.value, self.tags]
     
     def useCard(self):
         # Using the card
 
-        pass
+        usable = True
+        reusable = False
 
-    def getCardInfo(self):
+        for tag in self.tags:
+            if tag == "reusable":
+                reusable = True
+                break
 
-        return [self.name, self.externalName, self.cost, self.type, self.value]
+        if p.ap < self.cost:
+            usable = False
+            return usable, reusable
+
+        return usable, reusable
 
 
 class player():
     # Player class for saving information about the player
     
-    def __init__(self, health=10, ap=3):
+    def __init__(self, health=10, maxAp=3):
 
         self.health = health # Player's HP
-        self.ap = ap # Player's AP
+        self.maxAp = maxAp
+        self.ap = self.maxAp # Player's AP
 
         self.deck = [] # Player's deck
     
@@ -42,16 +56,22 @@ class player():
 
         self.deck.append(card(name))
     
+    def useCard(self, cardID):
+
+        usable, reusable = self.deck[cardID].useCard()
+
+        print(usable, reusable)
+
+        if usable == False:
+            return usable
+
+        if not(reusable):
+            del self.deck[cardID]
+    
     def getCardInfo(self, cardID):
 
         return self.deck[cardID].getCardInfo()
 
-
-def useCard(cardID):
-
-    # run deckID.useCard()
-    # destroy cardID
-    pass
 
 def main():
 
@@ -59,4 +79,5 @@ def main():
 
 
 if __name__ == "__main__":
+    p = player()
     main()
