@@ -1,7 +1,6 @@
 To Do:
 more functionallity of using a card ie damage or block
 dealing damage
-enemies sketchout
 enemies turn
 enemy logic
 
@@ -13,3 +12,4 @@ using a card
 tracking cards
 adding block to the player's attributes
 taking damage
+enemies sketchout
