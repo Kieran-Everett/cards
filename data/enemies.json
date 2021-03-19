@@ -20,5 +20,23 @@
                 "tags": ["attackDown"]
             }
         }
+    },
+
+    "bandit": {
+        "name": "bandit",
+        "externalName": "Bandit",
+        "maxHealth": 11,
+        "abilities": {
+            "scimitar": {
+                "type": "damage",
+                "value": 4,
+                "tags": []
+            },
+            "lightCrossbow": {
+                "type": "damage",
+                "value": 5,
+                "tags": []
+            }
+        }
     }
 }
