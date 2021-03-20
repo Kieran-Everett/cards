@@ -16,6 +16,7 @@ class GameState():
     def __init__(self):
 
         self.turn = "player" # player/enemy
+        self.enemies = [] # Saves currently active enemies
     
     def nextTurn(self):
 
@@ -159,7 +160,7 @@ class player():
         else:
             self.discard.append(card(name))
     
-    def useCard(self, cardID):
+    def useCard(self, cardID, targetID):
 
         usable, reusable = self.hand[cardID].useCard()
 
@@ -171,6 +172,10 @@ class player():
         if not(reusable):
             del self.hand[cardID]
             return usable
+        
+        if self.hand[cardID].type == "damage":
+            print("Attacking with " + self.hand[cardID].externalName)
+
     
     def getCardInfo(self, cardID):
         # Helper function for getting the info of a card
