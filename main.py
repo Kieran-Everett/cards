@@ -354,15 +354,6 @@ def load():
 
 
 def main():
-    
-    p.addCard("basicAttack")
-    p.addCard("basicAttack")
-    p.addCard("basicAttack")
-    p.addCard("basicAttack")
-    p.addCard("basicAttack")
-    p.addCard("basicAttack")
-
-    p.turn()
 
     print("Do you want to load a save file? (y/n)")
     while True:
