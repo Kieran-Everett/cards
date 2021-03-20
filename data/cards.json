@@ -5,7 +5,8 @@
         "cost": 1,
         "type": "damage",
         "value": 1,
-        "tags": ["reusable"]
+        "tags": ["reusable"],
+        "description": "This is an example description, this card deals some damage for some cost."
     },
 
     "basicAttack": {
@@ -14,7 +15,8 @@
         "cost": 1,
         "type": "damage",
         "value": 4,
-        "tags": []
+        "tags": [],
+        "description": "Attacks an enemy for 4 points of damage."
     },
 
     "basicShield": {
@@ -23,6 +25,7 @@
         "cost": 1,
         "type": "defence",
         "value": 5,
-        "tags": []
+        "tags": [],
+        "description": "Adds 5 block which absorbs damage."
     }
 }
