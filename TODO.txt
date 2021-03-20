@@ -2,6 +2,7 @@ To Do:
 more functionallity of using a card ie damage or block
 enemy logic
 sanatize user input for saveName, ie stop illegal characters like *\/| etc
+automatically creating encounters
 
 add a debug mode that allows you to set things like player stats and the encounter enemies etc.
 
