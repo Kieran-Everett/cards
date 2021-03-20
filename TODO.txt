@@ -1,6 +1,5 @@
 To Do:
 more functionallity of using a card ie damage or block
-enemies turn
 enemy logic
 sanatize user input for saveName, ie stop illegal characters like *\/| etc
 
@@ -16,3 +15,4 @@ adding block to the player's attributes
 taking damage
 enemies sketchout
 let the player deal damage to the enemies
+enemies turn
