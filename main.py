@@ -298,6 +298,7 @@ class player():
             pickedCard = input("Enter card number, or 'skip' to end the turn: ")
             try:
                 pickedCard = int(pickedCard)
+                pickedCard -= 1
                 break
             except:
                 if pickedCard == "skip":
