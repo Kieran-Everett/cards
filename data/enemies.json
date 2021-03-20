@@ -5,16 +5,19 @@
         "maxHealth": 10,
         "abilities": {
             "attack": {
+                "externalName": "Attack",
                 "type": "damage",
                 "value": 4,
                 "tags": []
             },
             "block": {
+                "externalName": "Block",
                 "type": "defence",
                 "value": 5,
                 "tags": []
             },
             "status": {
+                "externalName": "Attack Down",
                 "type": "statusEffect",
                 "value": 1,
                 "tags": ["attackDown"]
@@ -28,11 +31,13 @@
         "maxHealth": 11,
         "abilities": {
             "scimitar": {
+                "externalName": "Scimitar",
                 "type": "damage",
                 "value": 4,
                 "tags": []
             },
             "lightCrossbow": {
+                "externalName": "Light Crossbow",
                 "type": "damage",
                 "value": 5,
                 "tags": []
