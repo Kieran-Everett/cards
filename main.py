@@ -24,11 +24,6 @@ class Enemy():
 
         self.abilities = enemies[name]["abilities"] # Dict of abilities
     
-    def die(self):
-        # Helper function for dying
-
-        print("dead")
-    
     def takeDamage(self, damage):
         # Taking damage
 
@@ -36,9 +31,6 @@ class Enemy():
         if self.block < 0:
             self.health += self.block
             self.block = 0
-        
-        if self.health <= 0:
-            self.die()
     
     def dealDamage(self, damage):
         # Helper function for dealing damage to the player
@@ -50,16 +42,16 @@ class Enemy():
 
         # Basic action method, randomly selects an option with no logic
         possibleActions = []
-        for i in self.abilities:
-            possibleActions.append(i)
+        for action in self.abilities:
+            possibleActions.append(action)
         
         action = random.choice(possibleActions)
         if self.abilities[action]["type"] == "damage":
             self.dealDamage(self.abilities[action]["value"])
-            print("damage")
+            print("Enemy attacks with " + self.abilities[action]["externalName"] + " dealing " + str(self.abilities[action]["value"]) + " damage")
         elif self.abilities[action]["type"] == "defence":
             self.block += self.abilities[action]["value"]
-            print("block")
+            print("Enemy blocks")
         elif self.abilities[action]["type"] == "statusEffect":
             print("not implimented yet")
         else:
@@ -73,6 +65,7 @@ class GameState():
 
         self.turn = "player" # player/enemy
         self.enemies = [] # Saves currently active enemies
+        self.won = False
     
     def nextTurn(self):
 
@@ -84,6 +77,7 @@ class GameState():
     def win(self):
         
         print("You won!")
+        self.won = True
     
     def lose(self):
 
@@ -98,6 +92,17 @@ class GameState():
         # Destroying an enemy
 
         del self.enemies[enemyID]
+    
+    def checkForDeadEnemies(self):
+        # Checks to see if any enemies are dead
+
+        count = 0
+        for e in self.enemies:
+            if e.health <= 0:
+                self.destroyEnemy(count)
+            else:
+                count += 1
+        
         if len(self.enemies) == 0:
             self.win()
     
@@ -106,6 +111,12 @@ class GameState():
 
         for name in enemyNames:
             self.createEnemy(name)
+    
+    def enemyTurn(self):
+        # Does the enemies' turns
+
+        for e in self.enemies:
+            e.doAction()
 
 
 class card():
@@ -274,6 +285,7 @@ class player():
     
     def turn(self):
         # Taking the player's turn
+        skipping = False
 
         count = 1
         for e in gs.enemies:
@@ -304,9 +316,10 @@ class player():
                 break
             except:
                 if pickedCard == "skip":
-                    print("skip the turn")
+                    print("Skipping your turn")
                     self.endTurn()
-                    return True
+                    skipping = True
+                    return skipping
                 else:
                     print("Enter a number or 'skip'")
         
@@ -325,8 +338,9 @@ class player():
             p.useCard(pickedCard, target - 1)
         else: # not implimented yet
             p.useCard(pickedCard, -1)
-
-        return False
+        
+        gs.checkForDeadEnemies()
+        return skipping
 
 
 def save():
@@ -412,13 +426,23 @@ def main():
     
     while True:
         p.startTurn()
-        while p.ap > 0:
+        while p.ap > 0 and gs.won == False:
             if len(p.hand) == 0:
                 break
             skippingTurn = p.turn()
             if skippingTurn == True:
                 break
+        
+        if gs.won == True:
+            break
+
         p.endTurn()
+        gs.enemyTurn()
+
+        if p.health <= 0:
+            break
+        elif len(gs.enemies) == 0:
+            break
 
 
 if __name__ == "__main__":
