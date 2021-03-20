@@ -3,8 +3,10 @@ more functionallity of using a card ie damage or block
 enemy logic
 sanatize user input for saveName, ie stop illegal characters like *\/| etc
 automatically creating encounters
+moving from one encounter to the next
 
 add a debug mode that allows you to set things like player stats and the encounter enemies etc.
+
 
 Done:
 starting a turn and pulling a hand
