@@ -4,6 +4,8 @@ enemies turn
 enemy logic
 sanatize user input for saveName, ie stop illegal characters like *\/| etc
 
+add a debug mode that allows you to set things like player stats and the encounter enemies etc.
+
 Done:
 starting a turn and pulling a hand
 shuffling the deck
