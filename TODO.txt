@@ -1,8 +1,8 @@
 To Do:
 more functionallity of using a card ie damage or block
-let the player deal damage to the enemies
 enemies turn
 enemy logic
+sanatize user input for saveName, ie stop illegal characters like *\/| etc
 
 Done:
 starting a turn and pulling a hand
@@ -13,3 +13,4 @@ tracking cards
 adding block to the player's attributes
 taking damage
 enemies sketchout
+let the player deal damage to the enemies
