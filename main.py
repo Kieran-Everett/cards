@@ -245,6 +245,47 @@ class player():
         
         if self.health <= 0:
             self.die()
+    
+    def turn(self):
+        # Taking the player's turn
+
+        self.startTurn()
+
+        print("HP: ", self.health)
+        print("Block: ", self.block)
+        print("AP: ", self.ap)
+
+        print(" Name | Cost | Value ")
+        cardCount = 1
+        for card in self.hand:
+            print(cardCount, ") ", card.externalName, card.cost, card.value)
+            cardCount += 1
+        
+        while True:
+            pickedCard = input("Enter card number: ")
+            try:
+                pickedCard = int(pickedCard)
+                break
+            except:
+                print("Enter a number")
+        
+        while True:
+            target = input("Target (self, 1, 2, 3, etc.): ")
+            if target == "self":
+                break
+            else:
+                try:
+                    target = int(target)
+                    break
+                except:
+                    print("Enter a number")
+        
+        if str(target).isnumeric:
+            p.useCard(pickedCard, target)
+        else: # not implimented yet
+            p.useCard(pickedCard, -1)
+
+        self.endTurn()
 
 
 def save():
@@ -313,6 +354,15 @@ def load():
 
 
 def main():
+    
+    p.addCard("basicAttack")
+    p.addCard("basicAttack")
+    p.addCard("basicAttack")
+    p.addCard("basicAttack")
+    p.addCard("basicAttack")
+    p.addCard("basicAttack")
+
+    p.turn()
 
     print("Do you want to load a save file? (y/n)")
     while True:
