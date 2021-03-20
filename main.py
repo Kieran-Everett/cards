@@ -10,26 +10,6 @@ with open('data/enemies.json') as enemiesFile:
     enemies = json.load(enemiesFile)
 
 
-class GameState():
-    # Controls the game state
-    
-    def __init__(self):
-
-        self.turn = "player" # player/enemy
-        self.enemies = [] # Saves currently active enemies
-    
-    def nextTurn(self):
-
-        if self.turn == "player":
-            self.turn = "enemy"
-        else:
-            self.turn = "player"
-    
-    def lose(self):
-
-        print("Game Over")
-
-
 class Enemy():
     # Enemy class for controlling and saving data about the enemies
 
@@ -84,6 +64,26 @@ class Enemy():
             print("not implimented yet")
         else:
             print("Error: Invalid abilities type")
+
+
+class GameState():
+    # Controls the game state
+    
+    def __init__(self):
+
+        self.turn = "player" # player/enemy
+        self.enemies = [] # Saves currently active enemies
+    
+    def nextTurn(self):
+
+        if self.turn == "player":
+            self.turn = "enemy"
+        else:
+            self.turn = "player"
+    
+    def lose(self):
+
+        print("Game Over")
 
 
 class card():
