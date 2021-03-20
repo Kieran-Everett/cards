@@ -81,6 +81,10 @@ class GameState():
         else:
             self.turn = "player"
     
+    def win(self):
+        
+        print("You won!")
+    
     def lose(self):
 
         print("Game Over")
@@ -94,6 +98,8 @@ class GameState():
         # Destroying an enemy
 
         del self.enemies[enemyID]
+        if len(self.enemies) == 0:
+            self.win()
     
     def createEncounter(self, enemyNames):
         # Creating an encounter based of an array of enemy names
@@ -267,9 +273,20 @@ class player():
 
         self.startTurn()
 
-        print("HP: ", self.health)
-        print("Block: ", self.block)
-        print("AP: ", self.ap)
+        count = 1
+        for e in gs.enemies:
+            print(" ------ ")
+            print("Enemy ", count)
+            print("HP:   ", e.health)
+            print("Block:", e.block)
+            print(" ------ ")
+
+            count += 1
+
+        print(" ------ ")
+        print("HP:   ", self.health)
+        print("Block:", self.block)
+        print("AP:   ", self.ap)
 
         print(" Name | Cost | Value ")
         cardCount = 1
@@ -278,12 +295,17 @@ class player():
             cardCount += 1
         
         while True:
-            pickedCard = input("Enter card number: ")
+            pickedCard = input("Enter card number, or 'skip' to end the turn: ")
             try:
                 pickedCard = int(pickedCard)
                 break
             except:
-                print("Enter a number")
+                if pickedCard == "skip":
+                    print("skip the turn")
+                    self.endTurn()
+                    return True
+                else:
+                    print("Enter a number or 'skip'")
         
         while True:
             target = input("Target (self, 1, 2, 3, etc.): ")
@@ -297,11 +319,12 @@ class player():
                     print("Enter a number")
         
         if str(target).isnumeric:
-            p.useCard(pickedCard, target)
+            p.useCard(pickedCard, target - 1)
         else: # not implimented yet
             p.useCard(pickedCard, -1)
 
         self.endTurn()
+        return False
 
 
 def save():
@@ -371,6 +394,9 @@ def load():
 
 def main():
 
+    p.populateDeck()
+    gs.createEncounter(["bandit"])
+
     print("Do you want to load a save file? (y/n)")
     while True:
         x = input()
@@ -381,6 +407,11 @@ def main():
             break
         else:
             print("Enter either y or n")
+    
+    while True:
+        skippingTurn = p.turn()
+        if skippingTurn == True:
+            break
 
 
 if __name__ == "__main__":
