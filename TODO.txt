@@ -4,6 +4,7 @@ enemy logic
 sanatize user input for saveName, ie stop illegal characters like *\/| etc
 automatically creating encounters
 moving from one encounter to the next
+adding more enemies
 
 add a debug mode that allows you to set things like player stats and the encounter enemies etc.
 
