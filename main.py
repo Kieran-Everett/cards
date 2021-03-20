@@ -180,13 +180,13 @@ class player():
 
         if self.hand[cardID].type == "damage":
             print("Attacking with " + self.hand[cardID].externalName)
-            gs.enemies[targetID].takeDamage(self.hand[cardID])
+            gs.enemies[targetID].takeDamage(self.hand[cardID].value)
 
         # If the card is not reusable then the card gets removed
         if not(reusable):
             del self.hand[cardID]
             return usable
-        
+
     def getCardInfo(self, cardID):
         # Helper function for getting the info of a card
 
