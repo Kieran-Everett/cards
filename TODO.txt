@@ -12,13 +12,3 @@ add a debug mode that allows you to set things like player stats and the encount
 
 
 Done:
-starting a turn and pulling a hand
-shuffling the deck
-ending a turn and discarding remaining cards
-using a card
-tracking cards
-adding block to the player's attributes
-taking damage
-enemies sketchout
-let the player deal damage to the enemies
-enemies turn
