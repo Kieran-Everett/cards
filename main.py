@@ -84,6 +84,16 @@ class GameState():
     def lose(self):
 
         print("Game Over")
+    
+    def createEnemy(self, name):
+        # Creating an enemy
+
+        self.enemies.append(Enemy(name))
+    
+    def destroyEnemy(self, enemyID):
+        # Destroying an enemy
+
+        del self.enemies[enemyID]
 
 
 class card():
