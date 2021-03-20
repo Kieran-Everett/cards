@@ -94,6 +94,12 @@ class GameState():
         # Destroying an enemy
 
         del self.enemies[enemyID]
+    
+    def createEncounter(self, enemyNames):
+        # Creating an encounter based of an array of enemy names
+
+        for name in enemyNames:
+            self.createEnemy(name)
 
 
 class card():
