@@ -207,6 +207,8 @@ class player():
         elif self.hand[cardID].type == "defence":
             print("Blocking with " + self.hand[cardID].externalName)
             p.block += self.hand[cardID].value
+        
+        p.ap -= self.hand[cardID].cost
 
         # If the card is not reusable then the card gets removed
         if not(reusable):
@@ -287,6 +289,8 @@ class player():
         # Taking the player's turn
         skipping = False
 
+        print("\n\n---------------------------------------------\n\n")
+
         count = 1
         for e in gs.enemies:
             print(" ------ ")
@@ -334,10 +338,10 @@ class player():
                 except:
                     print("Enter a number")
         
-        if str(target).isnumeric:
-            p.useCard(pickedCard, target - 1)
-        else: # not implimented yet
+        if str(target) == "self":
             p.useCard(pickedCard, -1)
+        else:
+            p.useCard(pickedCard, target - 1)
         
         gs.checkForDeadEnemies()
         return skipping
