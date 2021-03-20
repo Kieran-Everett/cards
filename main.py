@@ -193,9 +193,13 @@ class player():
         if self.hand[cardID].type == "damage":
             print("Attacking with " + self.hand[cardID].externalName)
             gs.enemies[targetID].takeDamage(self.hand[cardID].value)
+        elif self.hand[cardID].type == "defence":
+            print("Blocking with " + self.hand[cardID].externalName)
+            p.block += self.hand[cardID].value
 
         # If the card is not reusable then the card gets removed
         if not(reusable):
+            self.discard.append(self.hand[cardID])
             del self.hand[cardID]
             return usable
 
@@ -271,8 +275,6 @@ class player():
     def turn(self):
         # Taking the player's turn
 
-        self.startTurn()
-
         count = 1
         for e in gs.enemies:
             print(" ------ ")
@@ -324,7 +326,6 @@ class player():
         else: # not implimented yet
             p.useCard(pickedCard, -1)
 
-        self.endTurn()
         return False
 
 
@@ -410,9 +411,14 @@ def main():
             print("Enter either y or n")
     
     while True:
-        skippingTurn = p.turn()
-        if skippingTurn == True:
-            break
+        p.startTurn()
+        while p.ap > 0:
+            if len(p.hand) == 0:
+                break
+            skippingTurn = p.turn()
+            if skippingTurn == True:
+                break
+        p.endTurn()
 
 
 if __name__ == "__main__":
