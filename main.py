@@ -198,9 +198,8 @@ class player():
         oldDeck = self.deck
         self.deck = self.discard
         self.discard = []
-        for __ in oldDeck:
-            self.deck.append(oldDeck[0])
-            del oldDeck[0]
+        for card in oldDeck:
+            self.deck.append(card)
         random.shuffle(self.deck)
     
     def startTurn(self):
@@ -245,6 +244,17 @@ class player():
         
         if self.health <= 0:
             self.die()
+    
+    def populateDeck(self, attackCards=10, defenceCards=5):
+        # Populating the initial deck
+
+        for __ in range(attackCards):
+            self.addCard("basicAttack")
+        
+        for __ in range(defenceCards):
+            self.addCard("basicShield")
+        
+        self.shuffleDeck()
     
     def turn(self):
         # Taking the player's turn
