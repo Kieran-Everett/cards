@@ -5,6 +5,8 @@ sanatize user input for saveName, ie stop illegal characters like *\/| etc
 automatically creating encounters
 moving from one encounter to the next
 adding more enemies
+adding more cards
+adding special attack functionallity
 
 add a debug mode that allows you to set things like player stats and the encounter enemies etc.
 
