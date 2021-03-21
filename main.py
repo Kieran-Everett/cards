@@ -421,8 +421,39 @@ def load():
 
 def main():
 
-    p.populateDeck()
-    gs.createEncounter(["bandit", "bandit"])
+    print("Do you want to enter test mode? (y/n)")
+    while True:
+        x = input()
+        if x == "y":
+
+            print("Enter enemies to add to the encounter and enter a blank name when finished (use the 'name' field from data/enemies.json)")
+            customEncounter = []
+            while True:
+                toAdd = input()
+                if toAdd != "":
+                    customEncounter.append(toAdd)
+                else:
+                    break
+            gs.createEncounter(customEncounter)
+
+            print("Enter cards to go into the deck and enter a blank name when finished (use the 'name' field from data/cards.json)")
+            while True:
+                cardToAdd = input("Card: ")
+                if cardToAdd != "":
+                    numberToAdd = input("Amount: ")
+                    for __ in range(int(numberToAdd)):
+                        p.addCard(cardToAdd)
+                    p.shuffleDeck()
+                else:
+                    break
+
+            break
+        elif x == "n":
+            gs.createEncounter(["bandit", "bandit"])
+            p.populateDeck()
+            break
+        else:
+            print("Enter either y or n")
 
     print("Do you want to load a save file? (y/n)")
     while True:
