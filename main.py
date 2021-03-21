@@ -316,8 +316,11 @@ class player():
             pickedCard = input("Enter card number, or 'skip' to end the turn: ")
             try:
                 pickedCard = int(pickedCard)
-                pickedCard -= 1
-                break
+                if pickedCard > len(p.hand):
+                    print("Enter a valid number")
+                else:
+                    pickedCard -= 1
+                    break
             except:
                 if pickedCard == "skip":
                     print("Skipping your turn")
@@ -334,14 +337,18 @@ class player():
             else:
                 try:
                     target = int(target)
-                    break
+                    if target > len(gs.enemies):
+                        print("Enter a valid number")
+                    else:
+                        target -= 1
+                        break
                 except:
                     print("Enter a number")
         
         if str(target) == "self":
             p.useCard(pickedCard, -1)
         else:
-            p.useCard(pickedCard, target - 1)
+            p.useCard(pickedCard, target)
         
         gs.checkForDeadEnemies()
         return skipping
