@@ -422,7 +422,7 @@ def load():
 def main():
 
     p.populateDeck()
-    gs.createEncounter(["bandit"])
+    gs.createEncounter(["bandit", "bandit"])
 
     print("Do you want to load a save file? (y/n)")
     while True:
