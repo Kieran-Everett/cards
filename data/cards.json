@@ -27,5 +27,45 @@
         "value": 5,
         "tags": [],
         "description": "Adds 5 block which absorbs damage."
+    },
+
+    "heavyAttack": {
+        "name": "heavyAttack",
+        "externalName": "Heavy Attack",
+        "cost": 2,
+        "type": "damage",
+        "value": 10,
+        "tags": [],
+        "description": "Attacks an enemy with a heavy strike for 8 points of damage."
+    },
+
+    "heavyShield": {
+        "name": "heavyShield",
+        "externalName": "Barricade",
+        "cost": 2,
+        "type": "defence",
+        "value": 12,
+        "tags": [],
+        "description": "Barricades against 12 points of damage."
+    },
+    
+    "reusableStrike": {
+        "name": "reusableStrike",
+        "externalName": "Dancing Daggers",
+        "cost": 1,
+        "type": "damage",
+        "value": 2,
+        "tags": ["reusable"],
+        "description": "Attacks an enemy with a quick stab for 4 points of damage."
+    },
+
+    "attackDown": {
+        "name": "attackDown",
+        "externalName": "Slow",
+        "cost": 1,
+        "type": "status",
+        "value": 2,
+        "tags": ["attackDown"],
+        "description": "Lowers an enemy's attack for two turns."
     }
 }
