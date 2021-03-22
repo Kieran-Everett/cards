@@ -7,6 +7,7 @@ import math
 with open('data/cards.json') as cardsFile:
     cards = json.load(cardsFile)
 
+# Loads enemies
 with open('data/enemies.json') as enemiesFile:
     enemies = json.load(enemiesFile)
 
@@ -69,6 +70,7 @@ class GameState():
         self.won = False
     
     def nextTurn(self):
+        # Changing turn
 
         if self.turn == "player":
             self.turn = "enemy"
@@ -76,11 +78,13 @@ class GameState():
             self.turn = "player"
     
     def win(self):
+        # Winning
         
         print("You won!")
         self.won = True
     
     def lose(self):
+        # Losing
 
         print("Game Over")
     
@@ -99,11 +103,12 @@ class GameState():
 
         count = 0
         for e in self.enemies:
-            if e.health <= 0:
+            if e.health <= 0: # If an enemy has less than 1 hp then it gets destroyed
                 self.destroyEnemy(count)
             else:
                 count += 1
         
+        # If there are no living enemies then you win
         if len(self.enemies) == 0:
             self.win()
     
@@ -169,6 +174,7 @@ class player():
     
     def __init__(self, drawAmount=5):
 
+        # Player level stuff
         self.level = 1
         self.xp = 0
 
@@ -205,6 +211,7 @@ class player():
         if usable == False:
             return usable
 
+        # Doing different things based on the type of the card
         if self.hand[cardID].type == "damage":
             print("Attacking with " + self.hand[cardID].externalName)
             gs.enemies[targetID].takeDamage(self.hand[cardID].value)
@@ -212,6 +219,7 @@ class player():
             print("Blocking with " + self.hand[cardID].externalName)
             p.block += self.hand[cardID].value
         
+        # Removing the cost of the card
         p.ap -= self.hand[cardID].cost
 
         # If the card is not reusable then the card gets removed
@@ -290,9 +298,12 @@ class player():
         self.shuffleDeck()
     
     def levelUp(self):
+        # Leveling up
 
+        # Sets the level to the div of the player's xp / 100
         self.level, __ = divmod(self.xp, 100)
 
+        # Updates the player's variables accordingly
         self.maxHealth = self.level * 5 + 10
         self.maxAp = 3 + math.trunc(self.level / 2)
 
@@ -300,6 +311,7 @@ class player():
         self.ap = self.maxAp
     
     def addXp(self, xpToAdd):
+        # Adding xp to the player
 
         self.xp += xpToAdd
         newLevel, __ = divmod(self.xp, 100)
@@ -313,6 +325,7 @@ class player():
 
         print("\n\n---------------------------------------------\n\n")
 
+        # Printing information about the enemies
         count = 1
         for e in gs.enemies:
             print(" ------ ")
@@ -323,17 +336,20 @@ class player():
 
             count += 1
 
+        # Printing information about the player
         print(" ------ ")
         print("HP:   ", self.health)
         print("Block:", self.block)
         print("AP:   ", self.ap)
 
+        # Printing the player's current hand
         print(" Name | Cost | Value ")
         cardCount = 1
         for card in self.hand:
             print(cardCount, ") ", card.externalName, card.cost, card.value)
             cardCount += 1
         
+        # Picking a card
         while True:
             pickedCard = input("Enter card number, or 'skip' to end the turn: ")
             try:
@@ -352,6 +368,7 @@ class player():
                 else:
                     print("Enter a number or 'skip'")
         
+        # Targeting the card
         while True:
             target = input("Target (self, 1, 2, 3, etc.): ")
             if target == "self":
@@ -377,6 +394,7 @@ class player():
 
 
 def save():
+    # Saving the game
 
     saveName = input("Enter save file name: ")
 
@@ -415,6 +433,7 @@ def save():
         json.dump(saveData, saveFile, indent=4)
 
 def load():
+    # Loading the game
 
     saveName = input("Enter save file name: ")
 
@@ -443,7 +462,7 @@ def load():
 
 def main():
 
-    print("Do you want to enter test mode? (y/n)")
+    print("Do you want to enter test mode? (y/n)") # test mode is for testing encounters and cards
     while True:
         x = input()
         if x == "y":
