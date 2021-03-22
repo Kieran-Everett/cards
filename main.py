@@ -1,5 +1,6 @@
 import random
 import json
+import math
 
 
 # Loads cards
@@ -166,11 +167,14 @@ class card():
 class player():
     # Player class for saving information about the player
     
-    def __init__(self, maxHealth=10, maxAp=3, drawAmount=5):
+    def __init__(self, drawAmount=5):
+
+        self.level = 1
+        self.xp = 0
 
         # General stats and stuff or things that don't change much
-        self.maxHealth = maxHealth
-        self.maxAp = maxAp # Player's Max AP
+        self.maxHealth = self.level * 5 + 10
+        self.maxAp = 3 + math.trunc(self.level / 2) # Player's Max AP
         self.drawAmount = drawAmount # The amount of cards that the player draws
 
         # Card storage
@@ -284,6 +288,24 @@ class player():
             self.addCard("basicShield")
         
         self.shuffleDeck()
+    
+    def levelUp(self):
+
+        self.level, __ = divmod(self.xp, 100)
+
+        self.maxHealth = self.level * 5 + 10
+        self.maxAp = 3 + math.trunc(self.level / 2)
+
+        self.health = self.maxHealth
+        self.ap = self.maxAp
+    
+    def addXp(self, xpToAdd):
+
+        self.xp += xpToAdd
+        newLevel, __ = divmod(self.xp, 100)
+        if newLevel > self.level:
+            self.levelUp()
+            print("LEVEL UP!")
     
     def turn(self):
         # Taking the player's turn
