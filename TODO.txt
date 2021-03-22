@@ -1,9 +1,0 @@
-To Do:
-more functionallity of using a card ie damage or block
-enemy logic
-sanatize user input for saveName, ie stop illegal characters like *\/| etc
-automatically creating encounters
-moving from one encounter to the next
-adding more enemies
-adding more cards
-adding special attack functionallity
