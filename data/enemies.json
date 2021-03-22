@@ -3,6 +3,7 @@
         "name": "_exampleEnemy",
         "externalName": "Example Enemy",
         "maxHealth": 10,
+        "xp": 100,
         "abilities": {
             "attack": {
                 "externalName": "Attack",
@@ -29,6 +30,7 @@
         "name": "bandit",
         "externalName": "Bandit",
         "maxHealth": 11,
+        "xp": 20,
         "abilities": {
             "scimitar": {
                 "externalName": "Scimitar",
