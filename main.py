@@ -1,6 +1,7 @@
 import random
 import json
 import math
+import numpy
 
 
 # Loads cards
@@ -25,6 +26,7 @@ class Enemy():
         self.block = 0
 
         self.abilities = enemies[name]["abilities"] # Dict of abilities
+        self.aggression = enemies[name]["aggression"]
     
     def takeDamage(self, damage):
         # Taking damage
@@ -47,7 +49,44 @@ class Enemy():
         for action in self.abilities:
             possibleActions.append(action)
         
-        action = random.choice(possibleActions)
+        print(possibleActions)
+        
+        # nAttack = 0 # Number of attacks
+        pAttack = self.aggression # How agressive
+
+        # nElse = 0 # Number of other actions
+        pElse = 1-self.aggression # How defensive
+
+        # for action in possibleActions:
+        #     if self.abilities[action]["type"] == "damage":
+        #         nAttack += 1
+        #     else:
+        #         nElse += 1
+        
+        # try:
+        #     pAttack = pAttack / nAttack
+        # except:
+        #     pass
+        # try:
+        #     pElse = pElse / nElse
+        # except:
+        #     pass
+
+        actionType = numpy.random.choice(["attack", "else"], p=[pAttack, pElse])
+
+        if actionType == "attack":
+            possibleActions = []
+            for action in self.abilities:
+                if self.abilities[action]["type"] == "damage":
+                    possibleActions.append(action)
+            action = random.choice(possibleActions)
+        else:
+            possibleActions = []
+            for action in self.abilities:
+                if self.abilities[action]["type"] != "damage":
+                    possibleActions.append(action)
+            action = random.choice(possibleActions)
+
         if self.abilities[action]["type"] == "damage":
             self.dealDamage(self.abilities[action]["value"])
             print("Enemy attacks with " + self.abilities[action]["externalName"] + " dealing " + str(self.abilities[action]["value"]) + " damage")
