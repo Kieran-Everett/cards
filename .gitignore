@@ -134,3 +134,6 @@ saves/
 
 # Except for the _examples.json save file
 !saves/_examples.json
+
+# Ignore .vscode
+.vscode/
