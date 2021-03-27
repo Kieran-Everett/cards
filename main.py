@@ -481,50 +481,58 @@ def load():
 
 def main():
 
-    print("Do you want to enter test mode? (y/n)") # test mode is for testing encounters and cards
+    print("""
+Welcome to Cards, a deck based rogue-like made by Kieran Everett.
+    
+    1. New Game
+    2. Load Game
+    3. Debug Mode
+""")
+
     while True:
         x = input()
-        if x == "y":
-
-            print("Enter enemies to add to the encounter and enter a blank name when finished (use the 'name' field from data/enemies.json)")
-            customEncounter = []
-            while True:
-                toAdd = input()
-                if toAdd != "":
-                    customEncounter.append(toAdd)
-                else:
-                    break
-            gs.createEncounter(customEncounter)
-
-            print("Enter cards to go into the deck and enter a blank name when finished (use the 'name' field from data/cards.json)")
-            while True:
-                cardToAdd = input("Card: ")
-                if cardToAdd != "":
-                    numberToAdd = input("Amount: ")
-                    for __ in range(int(numberToAdd)):
-                        p.addCard(cardToAdd)
-                    p.shuffleDeck()
-                else:
-                    break
-
+        if x == "1":
+            x = "New Game"
             break
-        elif x == "n":
-            gs.createEncounter(["bandit", "bandit"])
-            p.populateDeck()
+        elif x == "2":
+            x = "Load Game"
+            break
+        elif x == "3":
+            x = "Debug"
             break
         else:
-            print("Enter either y or n")
+            print("Enter a valid option (1/2/3)")
 
-    print("Do you want to load a save file? (y/n)")
-    while True:
-        x = input()
-        if x == "y":
-            load()
-            break
-        elif x == "n":
-            break
-        else:
-            print("Enter either y or n")
+    
+    if x == "Load Game":
+        load()
+
+    if x == "Debug":
+
+        print("Enter enemies to add to the encounter and enter a blank name when finished (use the 'name' field from data/enemies.json)")
+        customEncounter = []
+        while True:
+            toAdd = input()
+            if toAdd != "":
+                customEncounter.append(toAdd)
+            else:
+                break
+        gs.createEncounter(customEncounter)
+
+        print("Enter cards to go into the deck and enter a blank name when finished (use the 'name' field from data/cards.json)")
+        while True:
+            cardToAdd = input("Card: ")
+            if cardToAdd != "":
+                numberToAdd = input("Amount: ")
+                for __ in range(int(numberToAdd)):
+                    p.addCard(cardToAdd)
+                p.shuffleDeck()
+            else:
+                break
+    else:
+        gs.createEncounter(["bandit", "bandit"])
+        p.populateDeck()
+
     
     while True:
         p.startTurn()
